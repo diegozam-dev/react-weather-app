@@ -8,6 +8,9 @@ const App = () => {
   const [weatherData, setWeatherData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log(import.meta.env.API_KEY);
+  console.log(import.meta.env.VITE_API_KEY);
+
   return (
     <div className="app__container">
       <div className="app__content">

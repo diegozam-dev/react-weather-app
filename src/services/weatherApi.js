@@ -3,8 +3,8 @@ const url = 'https://weatherapi-com.p.rapidapi.com/current.json?q=';
 const options = {
   method: 'GET',
   headers: {
-    'X-RapidAPI-Key': '1d7bd2d2bamsh2766db896bc7be2p169930jsne86a11129438',
-    'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
+    'X-RapidAPI-Key': import.meta.env.VITE_API_KEY,
+    'X-RapidAPI-Host': import.meta.env.VITE_API_HOST,
   },
 };
 
@@ -46,7 +46,7 @@ export const getWeatherData = async (location) => {
     const res = await fetch(url + location, options);
 
     const data = await res.json();
-    console.log(data);
+
     if (res.status !== 200) throw data.error;
 
     return createWeatherData(data.location, data.current);
