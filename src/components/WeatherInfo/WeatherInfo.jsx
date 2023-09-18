@@ -27,7 +27,11 @@ const WeatherInfo = ({ weatherData }) => {
 
         <section className="weather-info__info">
           <div className="weather-info__icon">
-            <img className="icon__img" src="" alt="" />
+            <img
+              className="icon__img"
+              src={weatherData.icon}
+              alt="weather-icon"
+            />
             <p className="icon__desciption">{data.condition}</p>
           </div>
 

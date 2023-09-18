@@ -46,7 +46,7 @@ export const getWeatherData = async (location) => {
     const res = await fetch(url + location, options);
 
     const data = await res.json();
-
+    console.log(data);
     if (res.status !== 200) throw data.error;
 
     return createWeatherData(data.location, data.current);
@@ -77,6 +77,7 @@ const createWeatherData = (locationData, currentData) => {
     name: locationData.name,
     coordinates: `${locationData.lat}, ${locationData.lon}`,
     condition: currentData.condition.text,
+    icon: currentData.condition.icon,
     windKph: currentData.wind_kph,
     temp: currentData.temp_c,
     isDay: currentData.is_day,
