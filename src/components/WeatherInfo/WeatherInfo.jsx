@@ -1,5 +1,5 @@
-import WeatherExtraInfo from './WeatherExtraInfo/WeatherExtraInfo';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import WeatherInfoItem from './WeatherInfoItem/WeatherInfoItem.jsx';
+import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
 import {
   MdPlace,
   MdAir,
@@ -8,7 +8,7 @@ import {
   MdGpsFixed,
 } from 'react-icons/md';
 
-const WeatherInfo = ({ weatherData }) => {
+const WeatherInfo = ({ weatherData, setIsDay }) => {
   const handleError = (error) => {
     return <ErrorMessage error={error} />;
   };
@@ -25,57 +25,55 @@ const WeatherInfo = ({ weatherData }) => {
           </div>
         </header>
 
-        <section className="weather-info__info">
-          <div className="weather-info__icon">
+        <main className="weather-info__condition">
+          <div className="condition">
             <img
-              className="icon__img"
+              className="condition__img"
               src={weatherData.icon}
               alt="weather-icon"
             />
-            <p className="icon__desciption">{data.condition}</p>
+            <p className="condition__desciption">{data.condition}</p>
           </div>
 
-          <div className="weather-info__temp">
+          <div className="temp">
             <MdDeviceThermostat />
             <p className="temp__celsius">
               {data.temp} <sup>o</sup> C
             </p>
           </div>
 
-          <div className="weather-info__extra-info">
-            <WeatherExtraInfo
+          <div className="weather-info__item">
+            <WeatherInfoItem
               icon={<MdAir />}
               name="Wind Speed (k/h)"
               description={data.windKph}
             />
 
-            <WeatherExtraInfo
+            <WeatherInfoItem
               icon={<MdOutlineOpacity />}
               name="Humidity (%)"
               description={data.humidity}
             />
 
-            <WeatherExtraInfo
+            <WeatherInfoItem
               icon={<MdGpsFixed />}
               name="Coordinates (Lat, Lon)"
               description={data.coordinates}
             />
           </div>
-        </section>
+        </main>
       </>
     );
   };
 
   return (
-    <>
-      {Object.keys(weatherData).length !== 0 ? (
-        <article className="weather-info__container">
-          {weatherData.code !== 200
-            ? handleError(weatherData)
-            : handleData(weatherData)}
-        </article>
-      ) : null}
-    </>
+    <section className="weather-info__container">
+      {Object.keys(weatherData).length !== 0
+        ? weatherData.code !== 200
+          ? handleError(weatherData)
+          : handleData(weatherData)
+        : null}
+    </section>
   );
 };
 

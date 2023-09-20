@@ -5,13 +5,12 @@ import { getWeatherData } from '../../services/weatherApi.js';
 const SearchBar = ({ setWeatherData, isLoading, setIsLoading }) => {
   const [location, setLocation] = useState('');
 
-  const handleChange = (e) => {
-    const tmpLocation = e.target.value;
-
-    setLocation(tmpLocation.trimStart());
+  const handleLocation = (e) => {
+    const newLocation = e.target.value;
+    setLocation(newLocation.trimStart());
   };
 
-  const handleClick = async (e) => {
+  const handleLocationSearch = async (e) => {
     e.preventDefault();
 
     if (location === '') return;
@@ -31,12 +30,12 @@ const SearchBar = ({ setWeatherData, isLoading, setIsLoading }) => {
         placeholder="Enter some place..."
         value={location}
         disabled={isLoading}
-        onChange={handleChange}
+        onChange={handleLocation}
       />
       <button
         className="search-bar__button"
         disabled={isLoading}
-        onClick={handleClick}
+        onClick={handleLocationSearch}
       >
         <MdSearch />
       </button>

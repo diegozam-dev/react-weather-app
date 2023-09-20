@@ -1,4 +1,4 @@
-const url = 'https://weatherapi-com.p.rapidapi.com/current.json?q=';
+const url = 'https://weatherapi-com.p.rapidapi.com/current.json';
 
 const options = {
   method: 'GET',
@@ -43,8 +43,7 @@ const errors = [
 
 export const getWeatherData = async (location) => {
   try {
-    const res = await fetch(url + location, options);
-
+    const res = await fetch(`${url}?q=${location}`, options);
     const data = await res.json();
 
     if (res.status !== 200) throw data.error;
@@ -55,16 +54,15 @@ export const getWeatherData = async (location) => {
   }
 };
 
-const createErrorData = ({ code }) => {
-  const error = errors.find((e) => {
-    if (e.errorCode !== code) return;
-
+const createErrorData = (error) => {
+  const newError = errors.find((e) => {
+    if (e.errorCode !== error.code) return;
     return e;
   });
 
   const errorData = {
-    code: error.statusCode,
-    message: error.message,
+    code: newError.statusCode,
+    message: newError.message,
   };
 
   return errorData;
@@ -75,13 +73,13 @@ const createWeatherData = (locationData, currentData) => {
     code: 200,
     country: locationData.country,
     name: locationData.name,
-    coordinates: `${locationData.lat}, ${locationData.lon}`,
     condition: currentData.condition.text,
-    icon: currentData.condition.icon,
-    windKph: currentData.wind_kph,
-    temp: currentData.temp_c,
     isDay: currentData.is_day,
+    icon: currentData.condition.icon,
+    temp: currentData.temp_c,
+    windKph: currentData.wind_kph,
     humidity: currentData.humidity,
+    coordinates: `${locationData.lat}, ${locationData.lon}`,
   };
 
   return weatherData;

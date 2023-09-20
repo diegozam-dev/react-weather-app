@@ -1,8 +1,8 @@
 const ErrorMessage = ({ error }) => {
   return (
-    <section className="error__container">
-      <p className="error__message">{error.message}</p>
-    </section>
+    <>
+      <h2 className="error__message">{error.message}</h2>
+    </>
   );
 };
 
