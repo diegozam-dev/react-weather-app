@@ -1,0 +1,38 @@
+.app__container,
+.app__content {
+  height: 100%;
+}
+
+.app__content {
+  position: relative;
+  background-color: var(--lt-bg-color);
+
+  & > header {
+    height: 5rem;
+  }
+
+  & > main {
+    width: 100%;
+    min-height: calc(100vh - (5rem + 2rem));
+  }
+
+  & > footer {
+    height: 2rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+    & p a {
+      font-weight: 600;
+    }
+  }
+
+  & > header,
+  > main,
+  > footer {
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+}

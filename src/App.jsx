@@ -16,7 +16,7 @@ const App = () => {
 
   return (
     <div className="app__container">
-      <div className="app__content">
+      <div className={isDay ? 'app__content' : 'app__content  dt-bg'}>
         <header>
           <SearchBar
             setWeatherData={setWeatherData}
@@ -27,16 +27,21 @@ const App = () => {
         </header>
 
         <main>
-          <WeatherInfo weatherData={weatherData} setIsDay={setIsDay} />
+          <WeatherInfo weatherData={weatherData} isDay={isDay} />
         </main>
 
         {isLoading && <Loader isDay={isDay} />}
 
         <footer>
-          <div className={isDay ? 'footer__container' : 'dt-footer__container'}>
-            <p>
+          <div className="footer__container">
+            <p className={isDay ? null : 'dt-txt'}>
               Powered by{' '}
-              <a href="https://www.weatherapi.com/" title="Free Weather API">
+              <a
+                className={isDay ? null : 'dt-txt'}
+                href="https://www.weatherapi.com/"
+                title="Free Weather API"
+                target="_blank"
+              >
                 WeatherAPI.com
               </a>
             </p>

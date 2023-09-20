@@ -1,5 +1,3 @@
-import WeatherInfoItem from './WeatherInfoItem/WeatherInfoItem.jsx';
-import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
 import {
   MdPlace,
   MdAir,
@@ -7,10 +5,15 @@ import {
   MdOutlineOpacity,
   MdGpsFixed,
 } from 'react-icons/md';
+import './WeatherInfo.css';
 
-const WeatherInfo = ({ weatherData, setIsDay }) => {
+const WeatherInfo = ({ weatherData, isDay }) => {
   const handleError = (error) => {
-    return <ErrorMessage error={error} />;
+    return (
+      <h2 className={isDay ? 'error__message' : 'error__message dt-txt'}>
+        {error.message}
+      </h2>
+    );
   };
 
   const handleData = (data) => {
@@ -18,48 +21,60 @@ const WeatherInfo = ({ weatherData, setIsDay }) => {
       <>
         <header className="weather-info__location">
           <div className="location">
-            <MdPlace />
-            <p>
+            <MdPlace size="1.5rem" color="#FE0000" />
+            <h2 className={isDay ? 'location__name' : 'location__name dt-txt'}>
               {data.name}, {data.country}
-            </p>
+            </h2>
           </div>
         </header>
 
         <main className="weather-info__condition">
           <div className="condition">
-            <img
-              className="condition__img"
-              src={weatherData.icon}
-              alt="weather-icon"
-            />
-            <p className="condition__desciption">{data.condition}</p>
+            <p
+              className={
+                isDay ? 'condition__desciption' : 'condition__desciption dt-txt'
+              }
+            >
+              {data.condition}
+            </p>
+            <div className="condition__img">
+              <img src={weatherData.icon} alt="weather-icon" />
+            </div>
           </div>
 
           <div className="temp">
-            <MdDeviceThermostat />
-            <p className="temp__celsius">
+            <MdDeviceThermostat
+              size="3rem"
+              className={isDay ? null : 'dt-txt'}
+            />
+            <p className={isDay ? 'temp__celsius' : 'temp__celsius dt-txt'}>
               {data.temp} <sup>o</sup> C
             </p>
           </div>
 
           <div className="weather-info__item">
-            <WeatherInfoItem
-              icon={<MdAir />}
-              name="Wind Speed (k/h)"
-              description={data.windKph}
-            />
+            <div className="item">
+              <MdAir size="1.5rem" className={isDay ? null : 'dt-txt'} />
+              <p className={isDay ? '' : 'dt-txt'}>Wind Speed (k/h)</p>
+              <strong className={isDay ? '' : 'dt-txt'}>{data.windKph}</strong>
+            </div>
 
-            <WeatherInfoItem
-              icon={<MdOutlineOpacity />}
-              name="Humidity (%)"
-              description={data.humidity}
-            />
+            <div className="item">
+              <MdOutlineOpacity
+                size="1.5rem"
+                className={isDay ? null : 'dt-txt'}
+              />
+              <p className={isDay ? '' : 'dt-txt'}>Humidity (%)</p>
+              <strong className={isDay ? '' : 'dt-txt'}>{data.humidity}</strong>
+            </div>
 
-            <WeatherInfoItem
-              icon={<MdGpsFixed />}
-              name="Coordinates (Lat, Lon)"
-              description={data.coordinates}
-            />
+            <div className="item">
+              <MdGpsFixed size="1.5rem" className={isDay ? null : 'dt-txt'} />
+              <p className={isDay ? '' : 'dt-txt'}>Coordinates (Lat, Lon)</p>
+              <strong className={isDay ? '' : 'dt-txt'}>
+                {data.coordinates}
+              </strong>
+            </div>
           </div>
         </main>
       </>

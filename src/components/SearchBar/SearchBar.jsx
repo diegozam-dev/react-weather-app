@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { MdSearch } from 'react-icons/md';
 import { getWeatherData } from '../../services/weatherApi.js';
+import './SearchBar.css';
 
 const SearchBar = ({ setWeatherData, isLoading, setIsLoading }) => {
   const [location, setLocation] = useState('');
@@ -37,7 +38,7 @@ const SearchBar = ({ setWeatherData, isLoading, setIsLoading }) => {
         disabled={isLoading}
         onClick={handleLocationSearch}
       >
-        <MdSearch />
+        <MdSearch size="1.2rem" />
       </button>
     </div>
   );

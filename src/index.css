@@ -5,10 +5,55 @@
   --f-family-txt: 'Crimson Text', serif;
 
   /* Colores light */
-  --dt-bg-color: #252B48;
-  --dt-txt-color: #F3F3F2;
+  --dt-bg-color: #252b48;
+  --dt-txt-color: #f3f3f2;
 
   /* Colores dark */
-  --lt-bg-color: #F7E987;
-  --lt-txt-colot: #222222;
+  --lt-bg-color: #f7e987;
+  --lt-txt-color: #222222;
+
+  /* Search bar */
+  --sb-input-focus-color: #97fff4;
+  --sb-text-color: #222222;
+  --sb-bg-color: #f3f3f2;
+
+  --border-color: #5c5c5c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+}
+
+body {
+  font-size: 16px;
+  min-height: 100vh;
+}
+
+p,
+strong,
+a {
+  font-family: var(--f-family-txt);
+  font-size: 1.1rem;
+  color: var(--lt-txt-color);
+}
+
+strong {
+  font-weight: 600;
+}
+
+h2 {
+  font-family: var(--f-family-title);
+  font-size: 1.5rem;
+}
+
+.dt-bg {
+  background-color: var(--dt-bg-color);
+}
+
+.dt-txt {
+  color: var(--dt-txt-color);
 }
