@@ -23,6 +23,9 @@ concurrency:
 jobs:
   # Single deploy job since we're just deploying
   deploy:
+    env:
+      VITE_API_HOST: weatherapi-com.p.rapidapi.com
+      VITE_API_KEY: 1d7bd2d2bamsh2766db896bc7be2p169930jsne86a11129438
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
